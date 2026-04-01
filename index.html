@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>廚房瀝水籃 - 洗完碗，水槽又塞了</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background-color: #1A1A2E;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Section Styles */
+        .section {
+            min-height: 100vh;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section.dark {
+            background-color: #1A1A2E;
+            color: #fff;
+        }
+
+        .section.light {
+            background-color: #F5F5F0;
+            color: #1A1A2E;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background-image: url('filter-usage.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(26,26,46,0.95) 0%, 
+                rgba(26,26,46,0.8) 50%, 
+                rgba(26,26,46,0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 50px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            background: #00FF88;
+            color: #1A1A2E;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,255,136,0.3);
+            margin-bottom: 15px;
+        }
+
+        .cta-button:hover {
+            background: #00E67A;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,255,136,0.4);
+        }
+
+        .cta-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Pain Points Section */
+        .pain-points {
+            text-align: left;
+        }
+
+        .pain-item {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .pain-item:last-child {
+            border-bottom: none;
+        }
+
+        .pain-item .emoji {
+            font-size: 2rem;
+            margin-right: 20px;
+        }
+
+        .pain-item .text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .pain-transition {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 1rem;
+            color: #00FF88;
+        }
+
+        /* Product Hero Section */
+        .product-hero {
+            text-align: center;
+        }
+
+        .product-hero h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1A1A2E;
+        }
+
+        .product-hero .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+
+        .product-image {
+            max-width: 400px;
+            width: 100%;
+            margin: 40px auto;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .features-bar {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .feature-item .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item .text {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Core Features Section */
+        .core-feature {
+            position: relative;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .core-feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(26,26,46,0.8) 0%, 
+                rgba(26,26,46,0.6) 100%);
+        }
+
+        .core-feature-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            background: rgba(0,0,0,0.6);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .core-feature h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #00FF88;
+        }
+
+        .core-feature p {
+            font-size: 1.3rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .feature-filter {
+            background-image: url('filter-detail.webp');
+        }
+
+        .feature-separation {
+            background-image: url('filter-usage.webp');
+        }
+
+        .feature-storage {
+            background-image: url('storage-mode.webp');
+        }
+
+        /* Video Section */
+        .video-section {
+            text-align: center;
+        }
+
+        .video-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #1A1A2E;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Specs Section */
+        .specs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .specs-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .specs-list h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1A1A2E;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: #1A1A2E;
+        }
+
+        .spec-value {
+            color: #666;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            text-align: center;
+        }
+
+        .social-proof h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .review-item {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #00FF88;
+        }
+
+        .review-stars {
+            color: #00FF88;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .disclaimer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            text-align: center;
+            position: relative;
+        }
+
+        .price-display {
+            margin-bottom: 30px;
+        }
+
+        .old-price {
+            font-size: 1.5rem;
+            color: #888;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .new-price {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #00FF88;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .price-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .final-cta-button {
+            width: 100%;
+            max-width: 400px;
+            padding: 25px 0;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+        }
+
+        .trust-bar {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26,26,46,0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .floating-cta.show {
+            transform: translateY(0);
+        }
+
+        .floating-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00FF88;
+        }
+
+        .floating-button {
+            background: #00FF88;
+            color: #1A1A2E;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            background: #00E67A;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .product-hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .core-feature h3 {
+                font-size: 1.5rem;
+            }
+
+            .core-feature p {
+                font-size: 1.1rem;
+            }
+
+            .video-section h2 {
+                font-size: 2rem;
+            }
+
+            .new-price {
+                font-size: 3rem;
+            }
+
+            .features-bar {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .trust-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .section {
+                padding: 100px 40px;
+            }
+
+            .specs {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero {
+                background-attachment: fixed;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .product-hero h2 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section dark hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>洗完碗，<br>水槽又塞了。</h1>
+                <p class="subtitle">黏膩的菜渣卡在排水孔，你用手指去摳，<br>那個觸感......你懂的。</p>
+                <a href="#final-cta" class="cta-button">從此不用摳水槽 →</a>
+                <div class="cta-subtitle">一秒安裝・免工具・掛上去就好</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="section dark pain-points">
+        <div class="container">
+            <div class="pain-item">
+                <span class="emoji">😤</span>
+                <span class="text">菜渣塞住排水孔，水槽變小池塘</span>
+            </div>
+            <div class="pain-item">
+                <span class="emoji">🤮</span>
+                <span class="text">濕垃圾悶在袋裡，打開那一刻想吐</span>
+            </div>
+            <div class="pain-item">
+                <span class="emoji">🙄</span>
+                <span class="text">菜瓜布扔水槽邊，濕答答滋生細菌</span>
+            </div>
+            <div class="pain-transition">
+                其實你只需要一個東西 ↓
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Hero Section -->
+    <section class="section light product-hero">
+        <div class="container">
+            <h2>掛上去，搞定。</h2>
+            <p class="subtitle">不用黏、不用鑽、不用工具。<br>扣在水槽邊，一秒裝好。</p>
+            
+            <div class="product-image">
+                <img src="product-clean.webp" alt="廚房瀝水籃產品圖" loading="lazy">
+            </div>
+
+            <div class="features-bar">
+                <div class="feature-item">
+                    <div class="emoji">🫧</div>
+                    <div class="text">過濾碎渣</div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">💧</div>
+                    <div class="text">乾溼分離</div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🧽</div>
+                    <div class="text">收納小物</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features A: Filter -->
+    <section class="core-feature feature-filter">
+        <div class="core-feature-content">
+            <h3>細密網孔</h3>
+            <p>碎到不行的菜渣也跑不掉</p>
+        </div>
+    </section>
+
+    <!-- Core Features B: Separation -->
+    <section class="core-feature feature-separation">
+        <div class="core-feature-content">
+            <h3>整盤直接倒</h3>
+            <p>湯湯水水自動濾掉<br>殘渣留在籃子裡</p>
+        </div>
+    </section>
+
+    <!-- Core Features C: Storage -->
+    <section class="core-feature feature-storage">
+        <div class="core-feature-content">
+            <h3>不用的時候</h3>
+            <p>放菜瓜布、放刷子<br>廚房檯面終於乾淨了</p>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="section light video-section">
+        <div class="container">
+            <h2>30秒，全部看懂</h2>
+            <div class="video-container">
+                <video controls autoplay muted loop playsinline loading="lazy">
+                    <source src="product-video.mp4" type="video/mp4">
+                    您的瀏覽器不支援影片播放。
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="section light">
+        <div class="container">
+            <div class="specs">
+                <div class="specs-image">
+                    <img src="product-spec.webp" alt="產品規格尺寸" loading="lazy">
+                </div>
+                <div class="specs-list">
+                    <h3>規格</h3>
+                    <div class="spec-item">
+                        <span class="spec-label">尺寸</span>
+                        <span class="spec-value">22 × 13 × 8.5 cm</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">材質</span>
+                        <span class="spec-value">食品級 PP + 透明 PET</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">重量</span>
+                        <span class="spec-value">輕到你會忘記它的存在</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">安裝</span>
+                        <span class="spec-value">卡扣式，免工具</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">適用</span>
+                        <span class="spec-value">水槽邊緣厚度 0.5 ~ 3cm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="section dark social-proof">
+        <div class="container">
+            <h2>用過的人怎麼說</h2>
+            <div class="reviews-grid">
+                <div class="review-item">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="review-text">「終於不用每天摳排水孔了，租屋族必備。」</div>
+                    <div class="review-author">— 小美，26歲，台北</div>
+                </div>
+                <div class="review-item">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="review-text">「買了三個，婆婆家也裝了，她讚不絕口。」</div>
+                    <div class="review-author">— 阿芳，34歲，台中</div>
+                </div>
+                <div class="review-item">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="review-text">「透明的看得到裡面，知道什麼時候該清，很方便。」</div>
+                    <div class="review-author">— Kevin，29歲，高雄</div>
+                </div>
+            </div>
+            <div class="disclaimer">以上為產品使用情境模擬</div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section dark final-cta" id="final-cta">
+        <div class="container">
+            <div class="price-display">
+                <div class="old-price">~~NT$399~~</div>
+                <div class="new-price">NT$199</div>
+            </div>
+            <p class="price-subtitle">你每天摳水槽浪費的時間<br>比這個還貴</p>
+            
+            <a href="#" class="cta-button final-cta-button">立即購買 →</a>
+            
+            <div class="trust-bar">
+                <span>🚚 滿額免運</span>
+                <span>·</span>
+                <span>🔄 7天鑑賞期</span>
+                <span>·</span>
+                <span>💳 安全結帳</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta" id="floating-cta">
+        <div class="floating-price">NT$199</div>
+        <a href="#" class="floating-button">立即購買</a>
+    </div>
+
+    <script>
+        // Floating CTA show/hide logic
+        window.addEventListener('scroll', function() {
+            const heroSection = document.querySelector('.hero');
+            const floatingCta = document.getElementById('floating-cta');
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            
+            if (window.scrollY > heroBottom) {
+                floatingCta.classList.add('show');
+            } else {
+                floatingCta.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Video interaction enhancement
+        const video = document.querySelector('video');
+        if (video) {
+            video.addEventListener('click', function() {
+                if (this.muted) {
+                    this.muted = false;
+                    this.controls = true;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
