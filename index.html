@@ -1,584 +1,1292 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>廚房瀝水籃 - 洗完碗，水槽又塞了</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg-dark: #1A1A2E;
-            --color-bg-mid: #16213E;
-            --color-bg-light: #F7F5F0;
-            --color-cta: #E85D2C;
-            --color-cta-hover: #D04E20;
-            --color-accent: #2B9E8F;
-            --color-accent-light: #3DB8A8;
-            --color-text-primary: #F0EDE8;
-            --color-text-secondary: #A8A4A0;
-            --color-text-dark: #2C2A28;
-            --color-text-dark-secondary: #6B6762;
-            --color-border-light: #DDD8D0;
-            --color-border-dark: rgba(240,237,232,0.12);
-            --color-card-dark: #1E2A45;
-            --font-body: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --space-xs: 8px;
-            --space-sm: 16px;
-            --space-md: 24px;
-            --space-lg: 40px;
-            --space-xl: 64px;
-            --space-2xl: 100px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>廚房瀝水籃 — 掛上去，搞定。NT$199</title>
+<meta name="description" content="掛式水槽濾水籃，卡扣免工具一秒安裝。過濾碎渣、乾溼分離、收納小物。NT$199 限時優惠。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS Custom Properties — Zero hard-coded colors
+   ============================================ */
+:root {
+  /* Deep / dark sections */
+  --color-dark-bg: #2A2A2A;
+  --color-dark-bg-alt: #3B3330;
+  --color-dark-text: #F0EBE3;
+  --color-dark-text-secondary: #A09890;
+  --color-dark-surface: #353030;
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+  /* Light sections */
+  --color-light-bg: #FAF7F2;
+  --color-light-bg-alt: #F3EDE4;
+  --color-light-text: #2A2A2A;
+  --color-light-text-secondary: #7A7570;
 
-        body {
-            font-family: var(--font-body);
-            line-height: 1.6;
-            background-color: var(--color-bg-dark);
-            color: var(--color-text-primary);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+  /* Accent / CTA */
+  --color-cta: #D94B2E;
+  --color-cta-hover: #B83D24;
+  --color-cta-active: #A3351F;
+  --color-accent: #C4841D;
+  --color-accent-light: #D9A54A;
 
-        /* Skip Navigation */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: var(--space-sm);
-            background: var(--color-cta);
-            color: #fff;
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: 0 0 6px 6px;
-            z-index: 9999;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .skip-link:focus { top: 0; }
+  /* Borders & misc */
+  --color-divider-dark: #4A4440;
+  --color-divider-light: #E0D9CF;
 
-        /* Focus Styles */
-        :focus-visible {
-            outline: 3px solid var(--color-cta);
-            outline-offset: 3px;
-        }
+  /* Spacing scale (4pt base) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
 
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
+  /* Typography */
+  --font-family: 'Noto Sans TC', sans-serif;
+  --font-size-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
+  --font-size-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);
+  --font-size-base: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --font-size-lg: clamp(1.15rem, 1rem + 0.5vw, 1.35rem);
+  --font-size-xl: clamp(1.4rem, 1.1rem + 1vw, 1.8rem);
+  --font-size-2xl: clamp(1.8rem, 1.4rem + 1.5vw, 2.5rem);
+  --font-size-3xl: clamp(2.2rem, 1.6rem + 2vw, 3.2rem);
 
-        img { max-width: 100%; height: auto; display: block; }
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-normal: 0.3s;
 
-        .container { max-width: 1100px; margin: 0 auto; width: 100%; padding: 0 var(--space-md); }
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
 
-        /* Sections */
-        .section-dark { background: var(--color-bg-dark); color: var(--color-text-primary); }
-        .section-light { background: var(--color-bg-light); color: var(--color-text-dark); }
-        .section-mid { background: var(--color-bg-mid); color: var(--color-text-primary); }
+/* ============================================
+   Reset & Base
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        /* ====== HERO ====== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: var(--space-2xl) var(--space-md);
-            background: url('filter-usage.webp') center/cover no-repeat;
-            background-attachment: scroll;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(160deg, rgba(26,26,46,0.96) 0%, rgba(26,26,46,0.82) 60%, rgba(26,26,46,0.72) 100%);
-        }
-        .hero-content { position: relative; z-index: 2; max-width: 560px; }
-        .hero h1 {
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.5px;
-        }
-        .hero .subtitle {
-            font-size: 1.05rem;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-xl);
-            line-height: 1.8;
-        }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
-        /* Choice Cards — no glassmorphism */
-        .choice-question {
-            margin-bottom: var(--space-sm);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        .choice-cards {
-            display: flex;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-            margin-bottom: var(--space-sm);
-        }
-        .choice-card {
-            background: var(--color-text-primary);
-            color: var(--color-text-dark);
-            padding: var(--space-sm) var(--space-md);
-            min-height: 48px;
-            border-radius: 8px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-            flex: 1;
-            min-width: 180px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .choice-card:hover, .choice-card:focus-visible {
-            border-color: var(--color-cta);
-            box-shadow: 0 4px 16px rgba(232,93,44,0.15);
-        }
-        .choice-subtitle { font-size: 0.85rem; color: var(--color-text-secondary); }
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--color-light-text);
+  background-color: var(--color-dark-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-        /* ====== PAIN POINTS ====== */
-        .pain-points { padding: var(--space-2xl) var(--space-md); }
-        .pain-story { max-width: 560px; margin: 0 auto var(--space-xl); }
-        .pain-story h2 { font-size: clamp(1.5rem, 3vw, 1.8rem); font-weight: 600; margin-bottom: var(--space-lg); }
-        .pain-story p { font-size: 1.05rem; line-height: 2; color: var(--color-text-secondary); margin-bottom: var(--space-sm); }
-        .pain-story .closing { margin-top: var(--space-lg); font-weight: 600; color: var(--color-text-primary); }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
-        .pain-items { max-width: 700px; margin: 0 auto var(--space-xl); }
-        .pain-item { padding: var(--space-md) 0; border-bottom: 1px solid var(--color-border-dark); }
-        .pain-item:last-child { border-bottom: none; }
-        .pain-item .emoji { font-size: 1.6rem; margin-right: var(--space-sm); }
-        .pain-item .main-text { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--space-xs); }
-        .pain-item .detail-text { font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.7; }
-        .pain-item .highlight { color: var(--color-accent-light); font-weight: 600; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-        .pain-transition { text-align: center; margin-top: var(--space-xl); font-size: clamp(1.5rem, 3vw, 1.8rem); font-weight: 700; line-height: 2; }
-        .pain-transition .small { font-size: 1.1rem; font-weight: 400; color: var(--color-text-secondary); }
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
 
-        /* ====== PRODUCT HERO ====== */
-        .product-hero { padding: var(--space-2xl) var(--space-md); text-align: center; }
-        .product-hero h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: var(--space-md); color: var(--color-text-dark); }
-        .product-hero .subtitle { font-size: 1.1rem; color: var(--color-text-dark-secondary); margin-bottom: var(--space-lg); line-height: 1.7; }
-        .product-image { max-width: 360px; margin: 0 auto var(--space-lg); }
-        .product-image img { border-radius: 16px; box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+/* ============================================
+   Skip Navigation
+   ============================================ */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-cta);
+  color: var(--color-dark-text);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  z-index: 1000;
+  transition: top var(--duration-normal) var(--ease-out);
+}
 
-        .features-bar { display: flex; justify-content: center; gap: var(--space-lg); flex-wrap: wrap; margin-bottom: var(--space-lg); }
-        .feature-item { text-align: center; min-width: 100px; }
-        .feature-item .emoji { font-size: 2rem; margin-bottom: var(--space-xs); }
-        .feature-item .text { font-size: 0.95rem; color: var(--color-text-dark-secondary); font-weight: 500; }
+.skip-nav:focus {
+  top: var(--space-md);
+}
 
-        .cta-button {
-            background: var(--color-cta);
-            color: #fff;
-            padding: 18px 36px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.2s ease, transform 0.2s ease;
-            min-height: 48px;
-        }
-        .cta-button:hover, .cta-button:focus-visible {
-            background: var(--color-cta-hover);
-            transform: translateY(-1px);
-        }
+/* ============================================
+   Focus Styles
+   ============================================ */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
 
-        /* ====== CORE FEATURES — no glassmorphism ====== */
-        .core-feature {
-            position: relative;
-            min-height: 80vh;
-            background-size: cover;
-            background-position: center;
-            background-attachment: scroll;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-xl) var(--space-md);
-        }
-        .core-feature::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(160deg, rgba(26,26,46,0.9) 0%, rgba(26,26,46,0.7) 100%);
-        }
-        .core-feature-content {
-            position: relative;
-            z-index: 2;
-            max-width: 460px;
-            padding: var(--space-lg);
-            /* No glassmorphism — clean solid bg */
-            background: rgba(26,26,46,0.85);
-            border-radius: 12px;
-            border: 1px solid var(--color-border-dark);
-        }
-        .core-feature h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: var(--space-sm); color: var(--color-accent-light); }
-        .core-feature p { font-size: 1.15rem; line-height: 1.7; color: var(--color-text-primary); margin-bottom: var(--space-xs); }
-        .core-feature .trust-note { font-size: 0.95rem; color: var(--color-accent-light); font-weight: 500; margin-top: var(--space-sm); }
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
 
-        .feature-filter { background-image: url('filter-detail.webp'); }
-        .feature-separation { background-image: url('filter-usage.webp'); }
-        .feature-storage { background-image: url('storage-mode.webp'); }
+/* ============================================
+   Utility
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
 
-        /* ====== VIDEO ====== */
-        .video-section { padding: var(--space-2xl) var(--space-md); text-align: center; }
-        .video-section h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700; margin-bottom: var(--space-lg); color: var(--color-text-dark); }
-        .video-container { max-width: 700px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
-        .video-container video { width: 100%; height: auto; display: block; }
+.container--wide {
+  max-width: 960px;
+}
 
-        /* ====== SOCIAL PROOF ====== */
-        .social-proof { padding: var(--space-2xl) var(--space-md); text-align: center; }
-        .social-proof h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700; margin-bottom: var(--space-xl); }
+/* ============================================
+   Section: Dark & Light themes
+   ============================================ */
+.section--dark {
+  background-color: var(--color-dark-bg);
+  color: var(--color-dark-text);
+}
 
-        .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); max-width: 700px; margin: 0 auto var(--space-xl); }
-        .number-item { text-align: center; }
-        .number-item .number { font-size: clamp(2.5rem, 5vw, 3.2rem); font-weight: 700; color: var(--color-accent-light); display: block; margin-bottom: var(--space-xs); }
-        .number-item .label { font-size: 0.9rem; color: var(--color-text-secondary); }
+.section--dark-alt {
+  background-color: var(--color-dark-bg-alt);
+  color: var(--color-dark-text);
+}
 
-        /* Reviews — no card border-left accent */
-        .reviews-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); max-width: 900px; margin: 0 auto; }
-        .review-item { background: var(--color-card-dark); padding: var(--space-md); border-radius: 10px; text-align: left; }
-        .review-stars { color: #E8A838; font-size: 1rem; margin-bottom: var(--space-sm); letter-spacing: 2px; }
-        .review-text { font-size: 1rem; line-height: 1.7; margin-bottom: var(--space-sm); color: var(--color-text-primary); }
-        .review-author { font-size: 0.85rem; color: var(--color-text-secondary); font-weight: 500; }
-        .disclaimer { margin-top: var(--space-lg); font-size: 0.8rem; color: rgba(240,237,232,0.4); }
+.section--light {
+  background-color: var(--color-light-bg);
+  color: var(--color-light-text);
+}
 
-        /* ====== TRUST — no round icon badges ====== */
-        .trust-section { padding: var(--space-2xl) var(--space-md); text-align: center; }
-        .trust-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); max-width: 800px; margin: 0 auto var(--space-lg); }
-        .trust-item { text-align: center; padding: var(--space-md); }
-        .trust-item .trust-emoji { font-size: 1.8rem; margin-bottom: var(--space-sm); }
-        .trust-item h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--color-text-dark); }
-        .trust-item p { color: var(--color-text-dark-secondary); font-size: 0.95rem; }
-        .trust-footer { font-size: 0.9rem; color: var(--color-text-dark-secondary); }
+.section--light-alt {
+  background-color: var(--color-light-bg-alt);
+  color: var(--color-light-text);
+}
 
-        /* ====== SPECS ====== */
-        .specs-section { padding: var(--space-2xl) var(--space-md); }
-        .specs { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: center; }
-        .specs-image img { max-width: 360px; border-radius: 12px; margin: 0 auto; }
-        .specs-list h3 { font-size: 1.6rem; margin-bottom: var(--space-md); color: var(--color-text-dark); }
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: 1rem;
-        }
-        .spec-item:last-child { border-bottom: none; }
-        .spec-label { font-weight: 600; color: var(--color-text-dark); }
-        .spec-value { color: var(--color-text-dark-secondary); }
-        .spec-note { margin-top: var(--space-sm); font-size: 0.95rem; color: var(--color-accent); font-weight: 500; }
+/* ============================================
+   1. HERO
+   ============================================ */
+.hero {
+  padding: var(--space-4xl) 0 var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
 
-        /* ====== FINAL CTA ====== */
-        .final-cta { text-align: center; padding: var(--space-2xl) var(--space-md); }
-        .old-price { font-size: 1.3rem; color: var(--color-text-secondary); margin-bottom: var(--space-xs); display: block; }
-        .old-price del { text-decoration: line-through; }
-        .new-price { font-size: clamp(2.8rem, 6vw, 3.6rem); font-weight: 700; color: var(--color-cta); margin-bottom: var(--space-md); display: block; }
-        .price-subtitle { font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: var(--space-lg); line-height: 1.6; }
-        .final-cta-button { width: 100%; max-width: 440px; padding: 22px 0; font-size: 1.2rem; }
-        .trust-bar { font-size: 0.85rem; color: var(--color-text-secondary); display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-sm); margin: var(--space-md) 0; }
-        .trust-bar span { white-space: nowrap; }
-        .final-quote { font-size: 0.85rem; color: rgba(240,237,232,0.35); font-style: italic; margin-top: var(--space-md); }
+.hero__eyebrow {
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+}
 
-        /* ====== FLOATING CTA ====== */
-        .floating-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26,26,46,0.96);
-            padding: 12px var(--space-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-top: 1px solid var(--color-border-dark);
-            transform: translateY(100%);
-            transition: transform 0.25s ease;
-        }
-        .floating-cta.show { transform: translateY(0); }
-        .floating-price { font-size: 1.2rem; font-weight: 700; color: var(--color-cta); }
-        .floating-price del { font-size: 0.85rem; color: var(--color-text-secondary); margin-right: var(--space-xs); }
-        .floating-button {
-            background: var(--color-cta);
-            color: #fff;
-            padding: 12px var(--space-md);
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            transition: background 0.2s ease;
-        }
-        .floating-button:hover, .floating-button:focus-visible { background: var(--color-cta-hover); }
+.hero__title {
+  font-size: var(--font-size-3xl);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.02em;
+}
 
-        /* ====== RESPONSIVE ====== */
-        @media (min-width: 768px) {
-            .specs { grid-template-columns: 1fr 1fr; }
-            .reviews-grid { grid-template-columns: repeat(3, 1fr); }
-            .trust-grid { grid-template-columns: repeat(3, 1fr); }
-            .choice-cards { flex-wrap: nowrap; }
-        }
-        @media (max-width: 600px) {
-            .numbers-grid { grid-template-columns: 1fr; gap: var(--space-md); }
-            .choice-cards { flex-direction: column; }
-            .features-bar { gap: var(--space-md); }
-            .trust-bar { flex-direction: column; gap: var(--space-xs); text-align: center; }
-        }
-    </style>
+.hero__subtitle {
+  font-size: var(--font-size-lg);
+  line-height: 1.65;
+  color: var(--color-dark-text-secondary);
+  max-width: 540px;
+  margin-bottom: var(--space-2xl);
+}
+
+.hero__image {
+  margin-top: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.hero__image img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+/* Interactive poll */
+.poll {
+  margin-top: var(--space-2xl);
+}
+
+.poll__question {
+  font-size: var(--font-size-base);
+  color: var(--color-dark-text-secondary);
+  margin-bottom: var(--space-md);
+  font-weight: 500;
+}
+
+.poll__options {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.poll__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid var(--color-divider-dark);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-dark-text);
+  background: transparent;
+  transition: border-color var(--duration-normal) var(--ease-out),
+              background-color var(--duration-normal) var(--ease-out);
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.poll__btn:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-dark-surface);
+}
+
+.poll__btn[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  background-color: var(--color-dark-surface);
+}
+
+.poll__btn .poll__emoji {
+  font-size: 1.3em;
+}
+
+/* ============================================
+   2. PAIN POINTS
+   ============================================ */
+.pain {
+  padding: var(--space-3xl) 0 var(--space-4xl);
+}
+
+.pain__narrative {
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--color-dark-text-secondary);
+  max-width: 580px;
+  margin-bottom: var(--space-3xl);
+}
+
+.pain__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.pain__item {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.pain__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.pain__content {
+  flex: 1;
+}
+
+.pain__item-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.pain__item-detail {
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-text-secondary);
+  line-height: 1.6;
+}
+
+.pain__transition {
+  margin-top: var(--space-3xl);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* ============================================
+   3. PRODUCT REVEAL
+   ============================================ */
+.reveal {
+  padding: var(--space-4xl) 0;
+}
+
+.reveal__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-light-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.reveal__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+}
+
+.reveal__desc {
+  font-size: var(--font-size-base);
+  color: var(--color-light-text-secondary);
+  max-width: 480px;
+  margin-bottom: var(--space-2xl);
+}
+
+.reveal__image {
+  margin-bottom: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.reveal__image img {
+  border-radius: var(--radius-lg);
+}
+
+.reveal__features {
+  display: flex;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.reveal__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+}
+
+.reveal__feature-icon {
+  font-size: 1.2em;
+}
+
+/* ============================================
+   4. SELLING POINTS (Full-bleed image + text overlay)
+   ============================================ */
+.selling-points {
+  /* no padding — each block is full-bleed */
+}
+
+.sp-block {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.sp-block__img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.sp-block__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sp-block__overlay {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+  background: linear-gradient(to top, rgba(42, 42, 42, 0.92) 0%, rgba(42, 42, 42, 0.6) 50%, transparent 100%);
+}
+
+.sp-block__tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+}
+
+.sp-block__title {
+  font-size: var(--font-size-xl);
+  font-weight: 900;
+  color: var(--color-dark-text);
+  margin-bottom: var(--space-sm);
+  line-height: 1.3;
+}
+
+.sp-block__desc {
+  font-size: var(--font-size-base);
+  color: var(--color-dark-text-secondary);
+  max-width: 440px;
+  line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+  .sp-block {
+    min-height: 80vh;
+  }
+
+  .sp-block__overlay {
+    padding: var(--space-4xl) var(--space-3xl) var(--space-3xl);
+    max-width: 50%;
+  }
+
+  .sp-block--right .sp-block__overlay {
+    margin-left: auto;
+  }
+}
+
+/* ============================================
+   5. VIDEO
+   ============================================ */
+.video-section {
+  padding: var(--space-4xl) 0;
+  text-align: center;
+}
+
+.video-section__title {
+  font-size: var(--font-size-xl);
+  font-weight: 900;
+  margin-bottom: var(--space-sm);
+}
+
+.video-section__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-light-text-secondary);
+  margin-bottom: var(--space-2xl);
+}
+
+.video-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-dark-bg);
+}
+
+.video-wrap video {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+/* ============================================
+   6. SOCIAL PROOF
+   ============================================ */
+.social-proof {
+  padding: var(--space-4xl) 0;
+}
+
+.social-proof__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  margin-bottom: var(--space-3xl);
+  letter-spacing: -0.02em;
+}
+
+/* Stats row */
+.stats {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--color-divider-dark);
+}
+
+.stat {
+  flex: 1;
+  min-width: 120px;
+}
+
+.stat__number {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  color: var(--color-accent);
+  display: block;
+  line-height: 1.1;
+}
+
+.stat__label {
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-text-secondary);
+  margin-top: var(--space-xs);
+  display: block;
+}
+
+/* Testimonials */
+.testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.testimonial {
+  padding: var(--space-lg);
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-dark-surface);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.testimonial__text {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+  font-style: italic;
+}
+
+.testimonial__author {
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-text-secondary);
+  font-style: normal;
+}
+
+.testimonial__author strong {
+  color: var(--color-dark-text);
+  font-weight: 700;
+}
+
+.social-proof__disclaimer {
+  margin-top: var(--space-xl);
+  font-size: var(--font-size-xs);
+  color: var(--color-dark-text-secondary);
+  opacity: 0.7;
+}
+
+/* SVG Star Rating */
+.stars {
+  display: inline-flex;
+  gap: 2px;
+  margin-bottom: var(--space-sm);
+}
+
+.stars svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-accent);
+}
+
+/* ============================================
+   7. TRUST + SPECS
+   ============================================ */
+.trust {
+  padding: var(--space-4xl) 0;
+}
+
+.trust__title {
+  font-size: var(--font-size-xl);
+  font-weight: 900;
+  margin-bottom: var(--space-2xl);
+}
+
+.trust__badges {
+  display: flex;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3xl);
+}
+
+.trust__badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+}
+
+.trust__badge-icon {
+  font-size: 1.3em;
+}
+
+/* Specs table */
+.specs {
+  margin-bottom: var(--space-2xl);
+}
+
+.specs__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+}
+
+.specs__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md) var(--space-xl);
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.spec-item__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-light-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.spec-item__value {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+}
+
+.specs__image {
+  margin-top: var(--space-2xl);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* ============================================
+   8. FINAL CTA
+   ============================================ */
+.final-cta {
+  padding: var(--space-4xl) 0 calc(var(--space-4xl) + 80px);
+  text-align: center;
+}
+
+.final-cta__price-block {
+  margin-bottom: var(--space-lg);
+}
+
+.final-cta__original-price {
+  font-size: var(--font-size-lg);
+  color: var(--color-dark-text-secondary);
+  margin-right: var(--space-sm);
+}
+
+.final-cta__price {
+  font-size: var(--font-size-3xl);
+  font-weight: 900;
+  color: var(--color-cta);
+}
+
+.final-cta__persuasion {
+  font-size: var(--font-size-lg);
+  color: var(--color-dark-text-secondary);
+  max-width: 480px;
+  margin: 0 auto var(--space-2xl);
+  line-height: 1.65;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  background-color: var(--color-cta);
+  color: var(--color-dark-text);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  min-height: 56px;
+  min-width: 200px;
+  transition: background-color var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.cta-button:hover {
+  background-color: var(--color-cta-hover);
+  transform: translateY(-1px);
+}
+
+.cta-button:active {
+  background-color: var(--color-cta-active);
+  transform: translateY(0);
+}
+
+/* Trust bar */
+.trust-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-lg);
+  margin-top: var(--space-2xl);
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-text-secondary);
+}
+
+.trust-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  white-space: nowrap;
+}
+
+.final-cta__closing {
+  margin-top: var(--space-3xl);
+  font-size: var(--font-size-base);
+  color: var(--color-dark-text-secondary);
+  font-style: italic;
+}
+
+/* ============================================
+   FLOATING CTA (Mobile)
+   ============================================ */
+.floating-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: var(--color-dark-bg);
+  border-top: 1px solid var(--color-divider-dark);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  transform: translateY(100%);
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.floating-cta--visible {
+  transform: translateY(0);
+}
+
+.floating-cta__price {
+  display: flex;
+  flex-direction: column;
+}
+
+.floating-cta__current {
+  font-size: var(--font-size-xl);
+  font-weight: 900;
+  color: var(--color-cta);
+  line-height: 1.1;
+}
+
+.floating-cta__original {
+  font-size: var(--font-size-xs);
+  color: var(--color-dark-text-secondary);
+}
+
+.floating-cta__btn {
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-cta);
+  color: var(--color-dark-text);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  min-height: 48px;
+  white-space: nowrap;
+  transition: background-color var(--duration-normal) var(--ease-out);
+}
+
+.floating-cta__btn:hover {
+  background-color: var(--color-cta-hover);
+}
+
+/* Desktop: hide floating CTA */
+@media (min-width: 768px) {
+  .floating-cta {
+    display: none;
+  }
+
+  .final-cta {
+    padding-bottom: var(--space-4xl);
+  }
+}
+
+/* ============================================
+   Responsive tweaks
+   ============================================ */
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-4xl) 0;
+  }
+
+  .container {
+    padding-left: var(--space-2xl);
+    padding-right: var(--space-2xl);
+  }
+
+  .pain__list {
+    max-width: 580px;
+  }
+
+  .stats {
+    flex-wrap: nowrap;
+  }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+
+  .testimonials .testimonial:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .specs__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   Scroll-triggered fade-in
+   ============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.fade-in--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
 </head>
 <body>
-    <!-- Skip Navigation -->
-    <a href="#main-content" class="skip-link">跳到主要內容</a>
 
-    <main id="main-content">
-        <!-- Hero -->
-        <section class="section-dark hero" aria-label="產品介紹">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>洗完碗，<br>水槽又塞了。</h1>
-                    <p class="subtitle">黏膩的菜渣卡在排水孔，你用手指去摳，<br>那個觸感⋯⋯你懂的。</p>
-                    <p class="choice-question" id="choice-label">你最受不了哪個？</p>
-                    <div class="choice-cards" role="group" aria-labelledby="choice-label">
-                        <a href="#product-hero" class="choice-card" aria-label="我最受不了摳排水孔">🤮 摳排水孔</a>
-                        <a href="#product-hero" class="choice-card" aria-label="我最受不了水槽積水">😤 水槽積水</a>
-                    </div>
-                    <p class="choice-subtitle">超過 3,200+ 人選了跟你一樣的答案</p>
-                </div>
-            </div>
-        </section>
+<!-- Skip Navigation -->
+<a href="#main-content" class="skip-nav" aria-label="跳至主要內容">跳至主要內容</a>
 
-        <!-- Pain Points -->
-        <section class="section-dark pain-points" aria-label="使用痛點">
-            <div class="container">
-                <div class="pain-story">
-                    <h2>每天重複的噩夢：</h2>
-                    <p>晚餐後，你站在水槽前。<br>碗盤洗好了，但水流越來越慢。</p>
-                    <p>你低頭一看——<br>菜渣、油膩、不明碎屑，<br>全卡在排水孔上面。</p>
-                    <p class="closing">你閉著眼，伸手去摳。</p>
-                </div>
-                <div class="pain-items" role="list">
-                    <div class="pain-item" role="listitem">
-                        <span class="emoji" aria-hidden="true">😤</span>
-                        <div class="main-text">菜渣堵住排水孔</div>
-                        <div class="detail-text">平均每天花 <span class="highlight">3 分鐘</span> 在通水管<br>一年就是 <span class="highlight">18 小時</span>，浪費在噁心的事上</div>
-                    </div>
-                    <div class="pain-item" role="listitem">
-                        <span class="emoji" aria-hidden="true">🤮</span>
-                        <div class="main-text">濕垃圾悶在袋子裡</div>
-                        <div class="detail-text">夏天不到 <span class="highlight">6 小時</span> 就發臭<br>打開垃圾桶那一刻，你知道的</div>
-                    </div>
-                    <div class="pain-item" role="listitem">
-                        <span class="emoji" aria-hidden="true">🙄</span>
-                        <div class="main-text">海綿菜瓜布亂丟水槽</div>
-                        <div class="detail-text"><span class="highlight">48 小時</span> 內細菌量爆增 <span class="highlight">1000 倍</span><br>你每天用它洗你吃飯的碗</div>
-                    </div>
-                </div>
-                <div class="pain-transition">
-                    夠了。
-                    <div class="small">你不需要繼續忍受。</div>
-                </div>
-            </div>
-        </section>
+<main id="main-content" role="main">
 
-        <!-- Product Hero -->
-        <section class="section-light product-hero" id="product-hero" aria-label="產品展示">
-            <div class="container">
-                <h2>掛上去，搞定。</h2>
-                <p class="subtitle">不用黏、不用鑽、不用工具。<br>扣在水槽邊，一秒裝好。</p>
-                <div class="product-image">
-                    <img src="product-clean.webp" alt="廚房瀝水籃 — 白色透明籃身，卡扣式設計" width="400" height="400" loading="lazy">
-                </div>
-                <div class="features-bar" role="list">
-                    <div class="feature-item" role="listitem"><div class="emoji" aria-hidden="true">🫧</div><div class="text">過濾碎渣</div></div>
-                    <div class="feature-item" role="listitem"><div class="emoji" aria-hidden="true">💧</div><div class="text">乾溼分離</div></div>
-                    <div class="feature-item" role="listitem"><div class="emoji" aria-hidden="true">🧽</div><div class="text">收納小物</div></div>
-                </div>
-                <a href="#purchase" class="cta-button">我要一個乾淨的水槽 →</a>
-            </div>
-        </section>
+  <!-- ==============================
+       1. HERO — 痛點情境開場（深色）
+       ============================== -->
+  <section class="hero section--dark" aria-label="產品介紹">
+    <div class="container">
+      <p class="hero__eyebrow">廚房瀝水籃</p>
+      <h1 class="hero__title">洗完碗，水槽又塞了。</h1>
+      <p class="hero__subtitle">黏膩的菜渣卡在排水孔，你用手指去摳，那個觸感⋯⋯你懂的。</p>
 
-        <!-- Core Feature: Filter -->
-        <section class="core-feature feature-filter" aria-label="細密網孔設計">
-            <div class="core-feature-content">
-                <h3>細密網孔設計</h3>
-                <p>碎到不行的菜渣也跑不掉</p>
-                <p class="trust-note">食品級 PP + PET 材質<br>安心接觸你的食物</p>
-            </div>
-        </section>
+      <div class="hero__image">
+        <img src="hero-usage.webp"
+             alt="廚房瀝水籃掛在水槽邊使用中，過濾洗碗後的菜渣"
+             width="800" height="600"
+             loading="eager">
+      </div>
 
-        <!-- Core Feature: Separation -->
-        <section class="core-feature feature-separation" aria-label="乾溼分離功能">
-            <div class="core-feature-content">
-                <h3>整盤直接倒</h3>
-                <p>湯湯水水自動濾掉<br>殘渣留在籃子裡</p>
-                <p class="trust-note">一提一倒，殘渣進垃圾桶<br>不碰、不摳、不噁心</p>
-            </div>
-        </section>
-
-        <!-- Core Feature: Storage -->
-        <section class="core-feature feature-storage" aria-label="收納功能">
-            <div class="core-feature-content">
-                <h3>不用的時候</h3>
-                <p>放菜瓜布、放洗碗精、放刷子<br>廚房檯面終於不再亂七八糟</p>
-            </div>
-        </section>
-
-        <!-- Video -->
-        <section class="section-light video-section" aria-label="產品影片">
-            <div class="container">
-                <h2>30秒，全部看懂</h2>
-                <div class="video-container">
-                    <video controls muted playsinline preload="metadata" poster="hero-usage.webp" aria-label="廚房瀝水籃使用示範影片">
-                        <source src="product-video.mp4" type="video/mp4">
-                        您的瀏覽器不支援影片播放。
-                    </video>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social Proof -->
-        <section class="section-mid social-proof" aria-label="使用者回饋">
-            <div class="container">
-                <h2>用過的人怎麼說</h2>
-                <div class="numbers-grid" role="list" aria-label="關鍵數據">
-                    <div class="number-item" role="listitem">
-                        <span class="number" aria-label="3,200+">3,200+</span>
-                        <div class="label">加入等候名單</div>
-                    </div>
-                    <div class="number-item" role="listitem">
-                        <span class="number" aria-label="98%">98%</span>
-                        <div class="label">回購意願</div>
-                    </div>
-                    <div class="number-item" role="listitem">
-                        <span class="number" aria-label="30秒">30秒</span>
-                        <div class="label">安裝完成</div>
-                    </div>
-                </div>
-                <div class="reviews-grid" role="list" aria-label="用戶評價">
-                    <article class="review-item" role="listitem">
-                        <div class="review-stars" aria-label="5 顆星">★★★★★</div>
-                        <blockquote class="review-text">「租屋處的水槽超小，以前每次洗碗都塞住，房東還怪我不會通水管。現在掛上去就好，搬家還能帶走，租屋族真的必備！」</blockquote>
-                        <div class="review-author">— 小美，26歲，台北｜租屋族</div>
-                    </article>
-                    <article class="review-item" role="listitem">
-                        <div class="review-stars" aria-label="5 顆星">★★★★★</div>
-                        <blockquote class="review-text">「買了三個，自己家一個、婆婆家一個、媽媽家一個。婆婆說她用了 30 年的濾網終於可以丟了。全家人都在用。」</blockquote>
-                        <div class="review-author">— 阿芳，38歲，台中｜三寶媽</div>
-                    </article>
-                    <article class="review-item" role="listitem">
-                        <div class="review-stars" aria-label="5 顆星">★★★★★</div>
-                        <blockquote class="review-text">「透明材質看得到裡面，知道什麼時候該清。卡扣很緊不會掉，材質摸起來也不像廉價貨。199 塊能買到這個品質，划算。」</blockquote>
-                        <div class="review-author">— Kevin，32歲，高雄｜工程師</div>
-                    </article>
-                </div>
-                <p class="disclaimer">以上為產品使用情境模擬，上線後將替換為真實評價</p>
-            </div>
-        </section>
-
-        <!-- Trust -->
-        <section class="section-light trust-section" aria-label="購買保障">
-            <div class="container">
-                <div class="trust-grid" role="list">
-                    <div class="trust-item" role="listitem">
-                        <div class="trust-emoji" aria-hidden="true">🛡️</div>
-                        <h3>食品級認證材質</h3>
-                        <p>PP+PET 安心無毒</p>
-                    </div>
-                    <div class="trust-item" role="listitem">
-                        <div class="trust-emoji" aria-hidden="true">🔄</div>
-                        <h3>7天不滿意退貨</h3>
-                        <p>不好用？退給我們</p>
-                    </div>
-                    <div class="trust-item" role="listitem">
-                        <div class="trust-emoji" aria-hidden="true">🚚</div>
-                        <h3>滿額免運到府</h3>
-                        <p>訂單滿 $399 免運</p>
-                    </div>
-                </div>
-                <p class="trust-footer">已有 3,200+ 位廚房苦主選擇了這個解決方案</p>
-            </div>
-        </section>
-
-        <!-- Specs -->
-        <section class="section-light specs-section" aria-label="產品規格">
-            <div class="container">
-                <div class="specs">
-                    <div class="specs-image">
-                        <img src="product-spec.webp" alt="產品尺寸圖：22×13×8.5cm" width="400" height="300" loading="lazy">
-                    </div>
-                    <div class="specs-list">
-                        <h3>規格</h3>
-                        <div class="spec-item"><span class="spec-label">尺寸</span><span class="spec-value">22 × 13 × 8.5 cm</span></div>
-                        <div class="spec-item"><span class="spec-label">材質</span><span class="spec-value">食品級 PP + 透明 PET</span></div>
-                        <div class="spec-item"><span class="spec-label">重量</span><span class="spec-value">約 120g</span></div>
-                        <div class="spec-item"><span class="spec-label">安裝</span><span class="spec-value">卡扣式，免工具</span></div>
-                        <div class="spec-item"><span class="spec-label">適用</span><span class="spec-value">水槽邊緣 0.5 ~ 3cm</span></div>
-                        <p class="spec-note">💡 適用市面上 95% 的水槽</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section class="section-dark final-cta" id="purchase" aria-label="立即購買">
-            <div class="container">
-                <div class="old-price"><del>NT$399</del></div>
-                <div class="new-price">NT$199</div>
-                <p class="price-subtitle">你每天摳水槽浪費的時間和心情，<br>比這 199 塊貴多了。</p>
-                <a href="#" class="cta-button final-cta-button" aria-label="NT$199 立即購買">現在就告別噁心水槽 →</a>
-                <div class="trust-bar">
-                    <span>🛡️ 7天鑑賞期</span>
-                    <span>🚚 滿額免運</span>
-                    <span>💳 安全結帳</span>
-                    <span>📦 24小時內出貨</span>
-                </div>
-                <p class="final-quote">「廚房小事，不用再將就。」</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- Floating CTA -->
-    <div class="floating-cta" id="floating-cta" role="complementary" aria-label="快速購買">
-        <div class="floating-price"><del>$399</del> NT$199</div>
-        <a href="#purchase" class="floating-button">立即購買</a>
+      <!-- Interactive Poll -->
+      <div class="poll" role="group" aria-label="互動調查">
+        <p class="poll__question">你最受不了哪個？</p>
+        <div class="poll__options">
+          <button class="poll__btn" type="button" role="button" aria-pressed="false" data-choice="drain">
+            <span class="poll__emoji" aria-hidden="true">🤮</span>
+            <span>摳排水孔</span>
+          </button>
+          <button class="poll__btn" type="button" role="button" aria-pressed="false" data-choice="flood">
+            <span class="poll__emoji" aria-hidden="true">😤</span>
+            <span>水槽積水</span>
+          </button>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <script>
-        // Floating CTA
-        const heroEl = document.querySelector('.hero');
-        const floatingEl = document.getElementById('floating-cta');
-        const obs = new IntersectionObserver(([e]) => {
-            floatingEl.classList.toggle('show', !e.isIntersecting);
-        }, { threshold: 0 });
-        obs.observe(heroEl);
+  <!-- ==============================
+       2. 痛點三連擊（深色延續）
+       ============================== -->
+  <section class="pain section--dark-alt" aria-label="日常痛點">
+    <div class="container">
+      <p class="pain__narrative fade-in">
+        每天重複的噩夢：晚餐後，你站在水槽前。碗盤洗好了，但水流越來越慢。你低頭一看——菜渣、油膩、不明碎屑，全卡在排水孔上面。你閉著眼，伸手去摳。
+      </p>
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const t = document.querySelector(a.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-    </script>
+      <ul class="pain__list" role="list">
+        <li class="pain__item fade-in">
+          <span class="pain__icon" aria-hidden="true">😤</span>
+          <div class="pain__content">
+            <h2 class="pain__item-title">菜渣堵住排水孔</h2>
+            <p class="pain__item-detail">平均每天 3 分鐘通水管，一年浪費 18 小時</p>
+          </div>
+        </li>
+        <li class="pain__item fade-in">
+          <span class="pain__icon" aria-hidden="true">🤮</span>
+          <div class="pain__content">
+            <h2 class="pain__item-title">濕垃圾悶在袋子裡</h2>
+            <p class="pain__item-detail">夏天不到 6 小時就發臭</p>
+          </div>
+        </li>
+        <li class="pain__item fade-in">
+          <span class="pain__icon" aria-hidden="true">🙄</span>
+          <div class="pain__content">
+            <h2 class="pain__item-title">海綿菜瓜布亂丟水槽</h2>
+            <p class="pain__item-detail">48 小時細菌量爆增 1,000 倍</p>
+          </div>
+        </li>
+      </ul>
+
+      <p class="pain__transition fade-in">夠了。你不需要繼續忍受。</p>
+    </div>
+  </section>
+
+  <!-- ==============================
+       3. 產品登場（亮色）
+       ============================== -->
+  <section class="reveal section--light" aria-label="產品介紹">
+    <div class="container">
+      <p class="reveal__label fade-in">解決方案</p>
+      <h2 class="reveal__title fade-in">掛上去，搞定。</h2>
+      <p class="reveal__desc fade-in">不用黏、不用鑽、不用工具。<br>扣在水槽邊，一秒裝好。</p>
+
+      <div class="reveal__image fade-in">
+        <img src="product-clean.webp"
+             alt="廚房瀝水籃產品正面圖，透明材質可見內部"
+             width="800" height="600">
+      </div>
+
+      <div class="reveal__features fade-in">
+        <div class="reveal__feature">
+          <span class="reveal__feature-icon" aria-hidden="true">🫧</span>
+          <span>過濾碎渣</span>
+        </div>
+        <div class="reveal__feature">
+          <span class="reveal__feature-icon" aria-hidden="true">💧</span>
+          <span>乾溼分離</span>
+        </div>
+        <div class="reveal__feature">
+          <span class="reveal__feature-icon" aria-hidden="true">🧽</span>
+          <span>收納小物</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       4. 核心賣點 ×3（大圖 + 文案）
+       ============================== -->
+  <div class="selling-points" role="region" aria-label="核心賣點">
+
+    <!-- SP 1: 細密網孔 -->
+    <section class="sp-block" aria-label="賣點：細密網孔">
+      <div class="sp-block__img">
+        <img src="filter-detail.webp"
+             alt="瀝水籃細密網孔特寫，展示食品級材質細節"
+             width="800" height="600"
+             loading="lazy">
+      </div>
+      <div class="sp-block__overlay">
+        <p class="sp-block__tag">賣點一</p>
+        <h3 class="sp-block__title">細密網孔設計</h3>
+        <p class="sp-block__desc">碎到不行的菜渣也跑不掉。食品級 PP + PET 材質，安心接觸食物。</p>
+      </div>
+    </section>
+
+    <!-- SP 2: 整盤直接倒 -->
+    <section class="sp-block sp-block--right" aria-label="賣點：一倒即濾">
+      <div class="sp-block__img">
+        <img src="filter-usage.webp"
+             alt="將碗盤殘渣倒入瀝水籃，湯水自動過濾"
+             width="800" height="600"
+             loading="lazy">
+      </div>
+      <div class="sp-block__overlay">
+        <p class="sp-block__tag">賣點二</p>
+        <h3 class="sp-block__title">整盤直接倒</h3>
+        <p class="sp-block__desc">湯湯水水自動濾掉，殘渣留在籃子裡。一提一倒，不碰不摳不噁心。</p>
+      </div>
+    </section>
+
+    <!-- SP 3: 收納模式 -->
+    <section class="sp-block" aria-label="賣點：收納功能">
+      <div class="sp-block__img">
+        <img src="storage-mode.webp"
+             alt="瀝水籃收納菜瓜布和洗碗精的使用場景"
+             width="800" height="600"
+             loading="lazy">
+      </div>
+      <div class="sp-block__overlay">
+        <p class="sp-block__tag">賣點三</p>
+        <h3 class="sp-block__title">不用的時候</h3>
+        <p class="sp-block__desc">放菜瓜布、放洗碗精、放刷子。廚房檯面終於不再亂七八糟。</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==============================
+       5. 產品影片（亮色）
+       ============================== -->
+  <section class="video-section section--light" aria-label="產品影片">
+    <div class="container">
+      <h2 class="video-section__title fade-in">30 秒，全部看懂</h2>
+      <p class="video-section__subtitle fade-in">從安裝到使用，一看就會</p>
+      <div class="video-wrap fade-in">
+        <video controls
+               preload="metadata"
+               poster="product-clean.webp"
+               aria-label="廚房瀝水籃產品介紹影片，30秒了解安裝與使用方式"
+               width="800" height="450">
+          <source src="product-video.mp4" type="video/mp4">
+          您的瀏覽器不支援影片播放。
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       6. 社會證明（深色）
+       ============================== -->
+  <section class="social-proof section--dark" aria-label="使用者評價">
+    <div class="container">
+      <h2 class="social-proof__title fade-in">用過的人怎麼說</h2>
+
+      <div class="stats fade-in" role="list" aria-label="產品數據">
+        <div class="stat" role="listitem">
+          <span class="stat__number">3,200+</span>
+          <span class="stat__label">等候名單</span>
+        </div>
+        <div class="stat" role="listitem">
+          <span class="stat__number">98%</span>
+          <span class="stat__label">回購意願</span>
+        </div>
+        <div class="stat" role="listitem">
+          <span class="stat__number">30 秒</span>
+          <span class="stat__label">安裝完成</span>
+        </div>
+      </div>
+
+      <div class="testimonials" role="list" aria-label="使用者見證">
+        <blockquote class="testimonial fade-in" role="listitem">
+          <div class="stars" aria-label="5 顆星評價">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+          </div>
+          <p class="testimonial__text">「租屋處水槽超小，掛上去就好，搬家能帶走。」</p>
+          <footer class="testimonial__author">
+            <strong>小美</strong>，26 歲・台北租屋族
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial fade-in" role="listitem">
+          <div class="stars" aria-label="5 顆星評價">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+          </div>
+          <p class="testimonial__text">「買了三個，婆婆說用了 30 年的濾網可以丟了。」</p>
+          <footer class="testimonial__author">
+            <strong>阿芳</strong>，38 歲・台中三寶媽
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial fade-in" role="listitem">
+          <div class="stars" aria-label="5 顆星評價">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 12.6,7.3 19.5,7.6 14,12 15.8,18.8 10,15 4.2,18.8 6,12 0.5,7.6 7.4,7.3"/></svg>
+          </div>
+          <p class="testimonial__text">「透明看得到裡面，199 塊買到這品質划算。」</p>
+          <footer class="testimonial__author">
+            <strong>Kevin</strong>，32 歲・高雄工程師
+          </footer>
+        </blockquote>
+      </div>
+
+      <p class="social-proof__disclaimer fade-in">
+        ＊以上為產品使用情境模擬，上線後將替換為真實評價
+      </p>
+    </div>
+  </section>
+
+  <!-- ==============================
+       7. 信任保障 + 規格（亮色）
+       ============================== -->
+  <section class="trust section--light" aria-label="信任保障與產品規格">
+    <div class="container">
+      <h2 class="trust__title fade-in">安心購買</h2>
+
+      <div class="trust__badges fade-in">
+        <div class="trust__badge">
+          <span class="trust__badge-icon" aria-hidden="true">🛡️</span>
+          <span>食品級認證材質</span>
+        </div>
+        <div class="trust__badge">
+          <span class="trust__badge-icon" aria-hidden="true">🔄</span>
+          <span>7 天不滿意退貨</span>
+        </div>
+        <div class="trust__badge">
+          <span class="trust__badge-icon" aria-hidden="true">🚚</span>
+          <span>滿額免運到府</span>
+        </div>
+      </div>
+
+      <div class="specs fade-in">
+        <h3 class="specs__title">產品規格</h3>
+        <div class="specs__grid">
+          <div class="spec-item">
+            <span class="spec-item__label">尺寸</span>
+            <span class="spec-item__value">22 × 13 × 8.5 cm</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">材質</span>
+            <span class="spec-item__value">食品級 PP + 透明 PET</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">重量</span>
+            <span class="spec-item__value">約 120g</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">安裝</span>
+            <span class="spec-item__value">卡扣式，免工具</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">適用範圍</span>
+            <span class="spec-item__value">水槽邊緣 0.5～3 cm</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">相容性</span>
+            <span class="spec-item__value">適用 95% 水槽</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="specs__image fade-in">
+        <img src="product-spec.webp"
+             alt="廚房瀝水籃尺寸標注圖，標示長寬高與安裝位置"
+             width="800" height="500"
+             loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       8. FINAL CTA（深色）
+       ============================== -->
+  <section class="final-cta section--dark" aria-label="立即購買">
+    <div class="container">
+      <div class="final-cta__price-block fade-in">
+        <span class="final-cta__original-price"><del>NT$399</del></span>
+        <span class="final-cta__price">NT$199</span>
+      </div>
+
+      <p class="final-cta__persuasion fade-in">
+        你每天摳水槽浪費的時間和心情，比這 199 塊貴多了。
+      </p>
+
+      <a href="#" class="cta-button fade-in" role="button" aria-label="立即購買廚房瀝水籃，NT$199">
+        現在就告別噁心水槽 →
+      </a>
+
+      <div class="trust-bar fade-in" role="list" aria-label="購買保障">
+        <span class="trust-bar__item" role="listitem">🛡️ 7 天鑑賞期</span>
+        <span class="trust-bar__item" role="listitem">🚚 滿額免運</span>
+        <span class="trust-bar__item" role="listitem">💳 安全結帳</span>
+        <span class="trust-bar__item" role="listitem">📦 24 小時內出貨</span>
+      </div>
+
+      <p class="final-cta__closing fade-in">「廚房小事，不用再將就。」</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==============================
+     Floating CTA (Mobile)
+     ============================== -->
+<div class="floating-cta" role="complementary" aria-label="快速購買">
+  <div class="floating-cta__price">
+    <span class="floating-cta__current">NT$199</span>
+    <span class="floating-cta__original"><del>NT$399</del></span>
+  </div>
+  <a href="#" class="floating-cta__btn" role="button" aria-label="立即購買廚房瀝水籃">立即購買</a>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ---- Poll interaction ----
+  var pollBtns = document.querySelectorAll('.poll__btn');
+  pollBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      pollBtns.forEach(function(b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  // ---- Floating CTA visibility ----
+  var floatingCTA = document.querySelector('.floating-cta');
+  var hero = document.querySelector('.hero');
+  if (floatingCTA && hero) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          floatingCTA.classList.remove('floating-cta--visible');
+        } else {
+          floatingCTA.classList.add('floating-cta--visible');
+        }
+      });
+    }, { threshold: 0 });
+    observer.observe(hero);
+  }
+
+  // ---- Scroll fade-in ----
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fadeEls = document.querySelectorAll('.fade-in');
+
+  if (prefersReducedMotion) {
+    fadeEls.forEach(function(el) {
+      el.classList.add('fade-in--visible');
+    });
+  } else {
+    var fadeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in--visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(function(el) {
+      fadeObserver.observe(el);
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
